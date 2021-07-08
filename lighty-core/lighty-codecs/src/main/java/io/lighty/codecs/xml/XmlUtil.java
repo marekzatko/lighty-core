@@ -51,11 +51,12 @@ public final class XmlUtil {
     private static final TransformerFactory TRANSFORMER_FACTORY = TransformerFactory.newInstance();
 
     static {
-        DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+        DocumentBuilderFactory factory = DocumentBuilderFactory.newDefaultInstance();
         try {
             factory.setFeature("http://apache.org/xml/features/disallow-doctype-decl", true);
             factory.setFeature("http://xml.org/sax/features/external-general-entities", false);
             factory.setFeature("http://xml.org/sax/features/external-parameter-entities", false);
+            factory.setFeature(XMLConstants.FEATURE_SECURE_PROCESSING, true);
             factory.setXIncludeAware(false);
             factory.setExpandEntityReferences(false);
             // Performance improvement for messages with size <10k according to
